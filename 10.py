@@ -21,7 +21,20 @@ img3=cv2.add(img1,img2)
 
 img4=cv2.addWeighted(img1,0.2,img2,0.7,0)
 
-cv2.imshow('Image',img4)
+# Bitwise operations on images
+# AND
+img5=cv2.bitwise_and(img1,img2)
+
+# Or
+img6=cv2.bitwise_or(img1,img2)
+
+# Not
+img7=cv2.bitwise_not(img1)
+
+# XOR
+img8=cv2.bitwise_xor(img1,img2)
+
+cv2.imshow('Image',img8)
 cv2.waitKey()
 cv2.destroyAllWindows()
 
