@@ -13,6 +13,14 @@ def cov(image,mask):
             blank[i][j]=result
     return blank
 
+def thresholding(image, val):
+    rows, cols=image.shape
+    nimage=np.zeros((rows,cols),dtype=np.uint8)
+    for i in range(rows):
+        for j in range(cols):
+            if(image[i][j]>=val):
+                nimage[i][j]=255
+    return nimage
 def normalize(image):
     rows,cols=image.shape
     max=0
@@ -34,10 +42,11 @@ img=cv2.imread('./Images/img1.jpg',0)
 img=cv2.resize(img,(512,512))
 mask = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]])
 newimage=cov(img,mask)
-nimage=img-newimage
-secondimage=normalize(nimage)
+secondimage=thresholding(normalize(newimage),135)
+nimage=cv2.subtract(img,secondimage)
 cv2.imshow('Image1',img)
 cv2.imshow('Image3',secondimage)
+cv2.imshow('Image4',nimage)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
